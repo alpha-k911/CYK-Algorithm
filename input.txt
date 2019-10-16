@@ -1,0 +1,13 @@
+S AS
+S BS
+S a
+A AB
+A AY
+A XB
+A b
+B BA
+B a
+B b
+X a
+Y b
+^^^ aaba

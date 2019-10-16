@@ -1,0 +1,11 @@
+1
+| 15 S S S S S S S S S S B A A A A  |
+2
+| 4 A A A B  | 6 A S S S S B  |
+3
+| 2 S A  | 2 B A  | 3 S S A  |
+4
+| 3 X S B  | 3 X S B  | 3 Y A B  | 3 X S B  |
+
+Final : 15
+
