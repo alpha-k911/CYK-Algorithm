@@ -4,9 +4,10 @@ using namespace std;
 
 class pos{
 public:
+    char s;
     int x;
     int y;
-    pos(int a=0,int b=0):x(a),y(b){} //constructor
+    pos(char str=NULL,int a=0,int b=0):s(str),x(a),y(b){} //constructor
 };
 
 string getString(char x)
@@ -44,7 +45,7 @@ int main() {
             tmp = mp[getString(s[i])];
             cout<<"Found: "<<s[i]<<tmp.size()<<endl;
             for(j = 0; j < tmp.size(); j++){
-                graph[0][i].insert({tmp[j],{pos(-1,-1),pos(-1,-1)}});
+                graph[0][i].insert({tmp[j],{pos(s[i],-1,-1),pos('$',-1,-1)}}); // $ for literal
             }
         }else{
             cout<<"Not found: "<<s[i]<<endl;
@@ -68,7 +69,7 @@ int main() {
                         tmp = mp[tmp_string];
                         cout<<"Found: "<<tmp_string<<tmp.size()<<endl;
                         for(j = 0; j < tmp.size(); j++){
-                            graph[1][i].insert({tmp[j],{pos(0,i),pos(0,i+1)}});
+                            graph[1][i].insert({tmp[j],{pos(itt1->first[0],0,i),pos(itt2->first[0],0,i+1)}});
                         }
                     }else{
                         cout<<"Not found: "<<tmp_string<<endl;
@@ -101,7 +102,7 @@ int main() {
                                 tmp = mp[tmp_string];
                                 cout<<"Found: "<<tmp_string<<tmp.size()<<endl;
                                 for(j = 0; j < tmp.size(); j++){
-                                    graph[k][i].insert({tmp[j],{pos(x1,y1),pos(x2,y2)}});
+                                    graph[k][i].insert({tmp[j],{pos(itt1->first[0],x1,y1),pos(itt2->first[0],x2,y2)}});
                                 }
                             }else{
                                 cout<<"Not found: "<<tmp_string<<endl;
@@ -137,11 +138,36 @@ int main() {
         tmp_map = graph[l-1][j];
         for(auto itt = tmp_map.begin(); itt != tmp_map.end(); itt++){
             cout<<itt->first<<" ( ";
-            cout<<itt->second.first.x<<" , "<<itt->second.first.y<<" )"<<" & ( "<<itt->second.second.x<<" , "<<itt->second.second.y<<" )";
+            cout<<itt->second.first.s<<" , "<<itt->second.first.x<<" , "<<itt->second.first.y<<" )"<<" & ( "<<itt->second.second.s<<" , "<<itt->second.second.x<<" , "<<itt->second.second.y<<" )";
             cout<<endl;
         }
-        cout<<" | ";
     }
+    pos tmp_pos;
+    for(j = 0; j<1; j++){
+        tmp_map = graph[l-1][j];
+        for(auto itt = tmp_map.begin(); itt != tmp_map.end(); itt++){
+            queue<pos> q;
+            cout<<itt->first<<" ";
+            q.push(itt->second.first);//pushing left entity
+            q.push(itt->second.second);//pushing right entity
+            while(q.size() != 0){
+                tmp_pos = q.front();
+                q.pop();
+                cout<<tmp_pos.s<<" ";
+                if(tmp_pos.x != -1 && tmp_pos.y != -1){
+                    for(auto it1 = graph[tmp_pos.x][tmp_pos.y].begin(); it1 != graph[tmp_pos.x][tmp_pos.y].end(); it1++){
+                        if(it1 -> first == getString(tmp_pos.s)){
+                            q.push(it1->second.first);//pushing left entity
+                            q.push(it1->second.second);//pushing right entity
+                        }
+                    }
+                }
+            }
+
+            cout<<endl;
+        }
+    }
+
 
     return 0;
 }
