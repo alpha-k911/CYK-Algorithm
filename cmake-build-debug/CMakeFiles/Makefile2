@@ -74,12 +74,12 @@ preinstall:
 CMakeFiles/toc2.dir/all:
 	$(MAKE) -f CMakeFiles/toc2.dir/build.make CMakeFiles/toc2.dir/depend
 	$(MAKE) -f CMakeFiles/toc2.dir/build.make CMakeFiles/toc2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/CLionProjects/toc2/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target toc2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/CLionProjects/toc2/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target toc2"
 .PHONY : CMakeFiles/toc2.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/toc2.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/CLionProjects/toc2/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/CLionProjects/toc2/cmake-build-debug/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/toc2.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/CLionProjects/toc2/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/toc2.dir/rule

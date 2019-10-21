@@ -1,12 +1,4 @@
-#include <bits/stdc++.h>
-
-using namespace std;
-
-class path{
-public:
-    string s;
-    path(string str=NULL):s(str){} //constructor
-};
+#include "path.h"
 
 string getString(char x)
 {
@@ -20,6 +12,8 @@ int main() {
     vector<string> tmp;
     string s,a,b,c,tmp_string,str;
     a = ".";
+
+    //input start
     cout<<"Input (Provide each transition as provided in example in input.txt):"<<endl;
     cin>>a>>b;
     while(a != "^^^"){
@@ -31,6 +25,9 @@ int main() {
         }
         cin>>a>>b;
     }
+    //input end
+
+    //matrix declaration
     s = b;
     l = s.length();
     vector<unordered_multimap<string,path>> graph[l];
@@ -38,6 +35,7 @@ int main() {
         graph[i] = vector<unordered_multimap<string,path>>(l-i);
     }
 
+    //filling first row
     //1st row of length 1 in pyramid
     string literal = "$";
     for(i = 0; i < l; i++){
@@ -52,9 +50,12 @@ int main() {
         }
     }
 
+    //filling remaining rows
     //for remaining sized strings
     for(k = 1; k < l; k++){
         for(i = 0; i < l-k; i++){
+
+            //x1,y1,x2,y2 are pointers
             x1 = 0;
             y1 = i;
             x2 = k-1;
@@ -70,8 +71,8 @@ int main() {
                             //if found
                             if(mp.find(tmp_string) != mp.end()){
                                 tmp = mp[tmp_string];
-//                                cout<<"Found: "<<tmp_string<<tmp.size()<<endl;
                                 for(j = 0; j < tmp.size(); j++){
+
                                     //str is in VLR fromat for DFS traversal
                                     //path object defines how the object is formed
                                     str = tmp[j]+itt1->second.s + itt2->second.s;
@@ -81,6 +82,7 @@ int main() {
                         }
                     }
                 }
+                //changing pointers accordingly
                 x1++;
                 x2--;
                 y2++;
@@ -88,8 +90,8 @@ int main() {
         }
     }
 
+    //printing filled matrix
     for(i = l-1; i >= 0; i--){
-//        g[i] = unordered_multimap<string,pair<path,path>>(i);
         cout<<graph[i].size()<<endl;
         cout<<"| ";
         for(j = 0; j<l-i; j++){
@@ -103,10 +105,10 @@ int main() {
         cout<<endl;
     }
     cout<<"\nNo. Of distinct Parse Trees : "<<graph[l-1][0].size()<<endl;
-    cout<<"\nParse Trees : "<<endl;
 
-    //traversal
+    //traversal for parse tree
     //in every node of pyramid, each literal is having the data of its path from base in "VLR" format
+    cout<<"\nParse Trees : "<<endl;
     i=1;
     for(auto itt = graph[l-1][0].begin(); itt != graph[l-1][0].end(); itt++,i++){
         cout<<i<<": "<<itt->second.s<<endl;
