@@ -2,12 +2,10 @@
 
 using namespace std;
 
-class pos{
+class path{
 public:
     string s;
-    int x;
-    int y;
-    pos(string str=NULL,int a=0,int b=0):s(str),x(a),y(b){} //constructor
+    path(string str=NULL):s(str){} //constructor
 };
 
 string getString(char x)
@@ -15,28 +13,9 @@ string getString(char x)
     return string(1, x);
 }
 
-void traverse(pos p,vector<unordered_multimap<string,pos>> graph[]){
-//    cout<<p.s<<"("<<p.x<<","<<p.y<<") ";
-    cout<<p.s<<" ";
-    if(p.x == -1 && p.y == -1){
-        return;
-    }else{
-        for(auto it1 = graph[p.x][p.y].begin(); it1 != graph[p.x][p.y].end(); it1++){
-            if(it1 -> first == (p.s)){
-                pos a,b;
-                a = it1->second;
-//                if(it1->second.second.x != -1)graph[p.x][p.y].erase(it1);
-                traverse(a,graph);
-                traverse(b,graph);
-                break;
-            }
-        }
-    }
-}
-
 int main() {
     unordered_map<string,vector<string>> mp;
-    unordered_multimap<string,pos> tmp_map,tmp_map1,tmp_map2;
+    unordered_multimap<string,path> tmp_map,tmp_map1,tmp_map2;
     int i,j,k,t,l,n,size,x,y,x1,x2,y1,y2;
     vector<string> tmp;
     string s,a,b,c,tmp_string,str;
@@ -54,9 +33,9 @@ int main() {
     }
     s = b;
     l = s.length();
-    vector<unordered_multimap<string,pos>> graph[l];
+    vector<unordered_multimap<string,path>> graph[l];
     for(i = 0; i < l; i++){
-        graph[i] = vector<unordered_multimap<string,pos>>(l-i);
+        graph[i] = vector<unordered_multimap<string,path>>(l-i);
     }
 
     //1st row of length 1 in pyramid
@@ -68,7 +47,7 @@ int main() {
             for(j = 0; j < tmp.size(); j++){
                 //str is in VLR fromat for DFS traversal
                 str = tmp[j]+s[i]+literal;
-                graph[0][i].insert({tmp[j],pos(str,-1,-1)}); // $ for sign of literal
+                graph[0][i].insert({tmp[j],path(str)}); // $ for sign of literal
             }
         }
     }
@@ -94,9 +73,9 @@ int main() {
 //                                cout<<"Found: "<<tmp_string<<tmp.size()<<endl;
                                 for(j = 0; j < tmp.size(); j++){
                                     //str is in VLR fromat for DFS traversal
-                                    //pos object defines how the object is formed
+                                    //path object defines how the object is formed
                                     str = tmp[j]+itt1->second.s + itt2->second.s;
-                                    graph[k][i].insert({tmp[j],pos(str,x1,y1)});
+                                    graph[k][i].insert({tmp[j],path(str)});
                                 }
                             }
                         }
@@ -110,7 +89,7 @@ int main() {
     }
 
     for(i = l-1; i >= 0; i--){
-//        g[i] = unordered_multimap<string,pair<pos,pos>>(i);
+//        g[i] = unordered_multimap<string,pair<path,path>>(i);
         cout<<graph[i].size()<<endl;
         cout<<"| ";
         for(j = 0; j<l-i; j++){
