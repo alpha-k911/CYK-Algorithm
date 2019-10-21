@@ -1,3 +1,5 @@
+INPUT 1:
+
 S AS
 S BS
 S a
@@ -13,6 +15,10 @@ Y b
 ^^^ aaba
 
 
+//^^^ as a symbol of end of input transitions, req string must be provided immediately after it.
+
+INPUT 2:
+
 S AS
 S BS
 S a
@@ -25,6 +31,8 @@ X a
 Y b
 ^^^ bbb
 
+INPUT 3:
+
 S AB
 S BC
 A BA
@@ -35,6 +43,8 @@ C AB
 C a
 ^^^ baaba
 
+INPUT 4:
+
 S AB
 A CD
 A CF
@@ -44,7 +54,9 @@ F AD
 C a
 D b
 E c
-^^^ aaabbbcac
+^^^ aaabbb
+
+INPUT 5:
 
 S AT
 S AB
