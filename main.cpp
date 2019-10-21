@@ -41,7 +41,7 @@ int main() {
     vector<string> tmp;
     string s,a,b,c,tmp_string,str;
     a = ".";
-    cout<<"Input (Provide each possibility as provided in example in input.txt):"<<endl;
+    cout<<"Input (Provide each transition as provided in example in input.txt):"<<endl;
     cin>>a>>b;
     while(a != "^^^"){
         if(mp.find(b) == mp.end()){
