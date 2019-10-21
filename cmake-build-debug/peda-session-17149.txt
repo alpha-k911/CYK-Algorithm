@@ -1,0 +1,4 @@
+break /root/CLionProjects/toc2/main.cpp:166
+break /root/CLionProjects/toc2/main.cpp:163
+
+set exec-wrapper The wrapper for running programs is \
