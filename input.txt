@@ -12,6 +12,19 @@ X a
 Y b
 ^^^ aaba
 
+
+S AS
+S BS
+S a
+A AB
+A AY
+A XB
+A b
+B BA
+X a
+Y b
+^^^ bbb
+
 S AB
 S BC
 A BA
@@ -32,3 +45,13 @@ C a
 D b
 E c
 ^^^ aaabbbcac
+
+S AT
+S AB
+T SB
+A a
+B AC
+B a
+B c
+C c
+^^^ aaaca

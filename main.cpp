@@ -15,6 +15,26 @@ string getString(char x)
     return string(1, x);
 }
 
+void traverse(pos p,vector<unordered_multimap<string,pair<pos,pos>>> graph[]){
+//    cout<<p.s<<"("<<p.x<<","<<p.y<<") ";
+    cout<<p.s<<" ";
+    if(p.x == -1 && p.y == -1){
+        return;
+    }else{
+        for(auto it1 = graph[p.x][p.y].begin(); it1 != graph[p.x][p.y].end(); it1++){
+            if(it1 -> first == getString(p.s)){
+                pos a,b;
+                a = it1->second.first;
+                b = it1->second.second;
+//                if(it1->second.second.x != -1)graph[p.x][p.y].erase(it1);
+                traverse(a,graph);
+                traverse(b,graph);
+                break;
+            }
+        }
+    }
+}
+
 int main() {
     unordered_map<string,vector<string>> mp;
     unordered_multimap<string,pair<pos,pos>> tmp_map,tmp_map1,tmp_map2;
@@ -34,7 +54,7 @@ int main() {
     }
     s = b;
     l = s.length();
-    vector<unordered_multimap<string,pair<pos,pos>>> graph[l];
+    vector<unordered_multimap<string,pair<pos,pos>>> graph[l],tmp_graph[l];
     for(i = 0; i < l; i++){
         graph[i] = vector<unordered_multimap<string,pair<pos,pos>>>(l-i);
     }
@@ -45,7 +65,7 @@ int main() {
             tmp = mp[getString(s[i])];
             cout<<"Found: "<<s[i]<<tmp.size()<<endl;
             for(j = 0; j < tmp.size(); j++){
-                graph[0][i].insert({tmp[j],{pos(s[i],-1,-1),pos('$',-1,-1)}}); // $ for literal
+                graph[0][i].insert({tmp[j],{pos(s[i],-1,-1),pos('$',-1,-1)}}); // $ for sign of literal
             }
         }else{
             cout<<"Not found: "<<s[i]<<endl;
@@ -53,7 +73,7 @@ int main() {
         }
     }
     //2nd row
-    for(i = 0; i < l - 1; i++){
+    /*for(i = 0; i < l - 1; i++){
         cout<<">>>>>>>>>>>>>>>>>>>>>>>>>Length: "<<2<<endl;
         x = i;
         y = i + 1;
@@ -78,10 +98,10 @@ int main() {
                 }
             }
         }
-    }
+    }*/
 
     //for remaining sized strings
-    for(k = 2; k < l; k++){
+    for(k = 1; k < l; k++){
         cout<<">>>>>>>>>>>>>>>>>>>>>>>>>Length: "<<k+1<<endl;
         for(i = 0; i < l-k; i++){
             cout<<">>>>>>>>>>>>>>>>>>>>>>>>>Col: "<<i+1<<endl;
@@ -144,11 +164,13 @@ int main() {
     }
     pos tmp_pos;
     for(j = 0; j<1; j++){
-        tmp_map = graph[l-1][j];
-        for(auto itt = tmp_map.begin(); itt != tmp_map.end(); itt++){
+        for(auto itt = graph[l-1][j].begin(); itt != graph[l-1][j].end(); itt++){
             queue<pos> q;
             cout<<itt->first<<" ";
-            q.push(itt->second.first);//pushing left entity
+//            graph[l-1][j].erase(itt);
+            traverse(itt->second.first,graph);
+            traverse(itt->second.second,graph);
+            /*q.push(itt->second.first);//pushing left entity
             q.push(itt->second.second);//pushing right entity
             while(q.size() != 0){
                 tmp_pos = q.front();
@@ -159,15 +181,30 @@ int main() {
                         if(it1 -> first == getString(tmp_pos.s)){
                             q.push(it1->second.first);//pushing left entity
                             q.push(it1->second.second);//pushing right entity
+//                            graph[tmp_pos.x][tmp_pos.y].erase(it1);
+                            break;
                         }
                     }
                 }
-            }
+            }*/
 
             cout<<endl;
         }
     }
-
-
+    cout<<"llllllll:"<<endl;
+    for(i = l-1; i >= 0; i--){
+//        g[i] = unordered_multimap<string,pair<pos,pos>>(i);
+        cout<<graph[i].size()<<endl;
+        cout<<"| ";
+        for(j = 0; j<l-i; j++){
+            cout<<graph[i][j].size()<<" ";
+            tmp_map = graph[i][j];
+            for(auto itt = tmp_map.begin(); itt != tmp_map.end(); itt++){
+                cout<<itt->first<<" ";
+            }
+            cout<<" | ";
+        }
+        cout<<endl;
+    }
     return 0;
 }
