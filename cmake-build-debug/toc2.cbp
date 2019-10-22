@@ -87,12 +87,6 @@
 		<Unit filename="/root/CLionProjects/toc2/main.cpp">
 			<Option target="toc2"/>
 		</Unit>
-		<Unit filename="/root/CLionProjects/toc2/path.cpp">
-			<Option target="toc2"/>
-		</Unit>
-		<Unit filename="/root/CLionProjects/toc2/path.h">
-			<Option target="toc2"/>
-		</Unit>
 		<Unit filename="/root/CLionProjects/toc2/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

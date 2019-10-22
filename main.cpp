@@ -1,4 +1,6 @@
-#include "path.h"
+#include <bits/stdc++.h>
+
+using namespace std;
 
 string getString(char x)
 {
@@ -7,7 +9,7 @@ string getString(char x)
 
 int main() {
     unordered_map<string,vector<string>> mp;
-    unordered_multimap<string,path> tmp_map,tmp_map1,tmp_map2;
+    unordered_multimap<string,string> tmp_map,tmp_map1,tmp_map2;
     int i,j,k,t,l,n,size,x,y,x1,x2,y1,y2;
     vector<string> tmp;
     string s,a,b,c,tmp_string,str;
@@ -30,9 +32,9 @@ int main() {
     //matrix declaration
     s = b;
     l = s.length();
-    vector<unordered_multimap<string,path>> graph[l];
+    vector<unordered_multimap<string,string>> graph[l];
     for(i = 0; i < l; i++){
-        graph[i] = vector<unordered_multimap<string,path>>(l-i);
+        graph[i] = vector<unordered_multimap<string,string>>(l-i);
     }
 
     //filling first row
@@ -45,7 +47,7 @@ int main() {
             for(j = 0; j < tmp.size(); j++){
                 //str is in VLR fromat for DFS traversal
                 str = tmp[j]+s[i]+literal;
-                graph[0][i].insert({tmp[j],path(str)}); // $ for sign of literal
+                graph[0][i].insert({tmp[j],(str)}); // $ for sign of literal
             }
         }
     }
@@ -75,8 +77,8 @@ int main() {
 
                                     //str is in VLR fromat for DFS traversal
                                     //path object defines how the object is formed
-                                    str = tmp[j]+itt1->second.s + itt2->second.s;
-                                    graph[k][i].insert({tmp[j],path(str)});
+                                    str = tmp[j]+itt1->second + itt2->second;
+                                    graph[k][i].insert({tmp[j],(str)});
                                 }
                             }
                         }
@@ -111,7 +113,7 @@ int main() {
     cout<<"\nParse Trees : "<<endl;
     i=1;
     for(auto itt = graph[l-1][0].begin(); itt != graph[l-1][0].end(); itt++,i++){
-        cout<<i<<": "<<itt->second.s<<endl;
+        cout<<i<<": "<<itt->second<<endl;
     }
     return 0;
 }

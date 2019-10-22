@@ -6,9 +6,7 @@
 #define TOC2_PATH_H
 
 
-#include <bits/stdc++.h>
 
-using namespace std;
 
 class path{
 public:

@@ -150,33 +150,6 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/toc2.dir/build.make CMakeFiles/toc2.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-path.o: path.cpp.o
-
-.PHONY : path.o
-
-# target to build an object file
-path.cpp.o:
-	$(MAKE) -f CMakeFiles/toc2.dir/build.make CMakeFiles/toc2.dir/path.cpp.o
-.PHONY : path.cpp.o
-
-path.i: path.cpp.i
-
-.PHONY : path.i
-
-# target to preprocess a source file
-path.cpp.i:
-	$(MAKE) -f CMakeFiles/toc2.dir/build.make CMakeFiles/toc2.dir/path.cpp.i
-.PHONY : path.cpp.i
-
-path.s: path.cpp.s
-
-.PHONY : path.s
-
-# target to generate assembly for a file
-path.cpp.s:
-	$(MAKE) -f CMakeFiles/toc2.dir/build.make CMakeFiles/toc2.dir/path.cpp.s
-.PHONY : path.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -189,9 +162,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... path.o"
-	@echo "... path.i"
-	@echo "... path.s"
 .PHONY : help
 
 

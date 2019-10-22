@@ -3,4 +3,4 @@ project(toc2)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(toc2 main.cpp path.cpp path.h)
+add_executable(toc2 main.cpp)
